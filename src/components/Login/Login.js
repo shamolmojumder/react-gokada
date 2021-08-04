@@ -4,7 +4,11 @@ import { Button } from 'react-bootstrap';
 import firebase from "firebase/app";
 import "firebase/auth";
 import firebaseConfig from './firebase.config';
+import { useState } from 'react';
+import Alert from 'react-bootstrap/Alert'
+
 const Login = () => {
+    const[signInuUser,setSignInUser] =useState({})
     if (firebase.apps.length===0) {
         firebase.initializeApp(firebaseConfig); 
     }
@@ -20,8 +24,9 @@ const Login = () => {
     var token = credential.accessToken;
     // The signed-in user info.
     var user = result.user;
+    setSignInUser(user)
     // ...
-    console.log(user);
+    console.log(user.displayName,user.email,user.photoURL);
   }).catch((error) => {
     // Handle Errors here.
     var errorCode = error.code;
@@ -31,7 +36,8 @@ const Login = () => {
     // The firebase.auth.AuthCredential type that was used.
     var credential = error.credential;
     // ...
-    console.log(error);
+    console.log(errorMessage);
+    setSignInUser(errorMessage)
   });
     }
     return (
@@ -46,8 +52,21 @@ const Login = () => {
                     <Form.Control type="password" placeholder="Password" />
                 </Form.Group>
                 <Button>Button</Button>
-                <Button onClick={googleSignInBtn} variant="danger">Signin with Google</Button>
+                <Button data-aos="fade-left" onClick={googleSignInBtn} variant="danger">Signin with Google</Button>
             </Form> 
+            <h1>Name:{signInuUser.displayName} </h1>
+            <h1>Name:{signInuUser.email} </h1>
+            <img src={signInuUser.photoURL} alt="" />
+         {
+             signInuUser.email &&   <Alert data-aos="fade-left"
+             data-aos-anchor="#example-anchor"
+             data-aos-offset="500"
+             data-aos-duration="500" variant='success '>
+             account loggedin successfully
+           </Alert>
+         }
+     
+            
         </div>
     );
 };

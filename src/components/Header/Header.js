@@ -9,21 +9,15 @@ const Header = () => {
             <div data-aos="zoom-in" data-aos-delay="1050" data-aos-duration="4000" data-aos-offset="200">
                 <Navbar bg="dark" variant="dark">
                     <Container>
-                        <Navbar.Brand href="#home">Gokada</Navbar.Brand>
+                        <Navbar.Brand><Link className={styles.login} to='/'>Gokada</Link></Navbar.Brand>
                         <Nav className="ms-auto">
-                            <Nav.Link href="#home">Home</Nav.Link>
-                            <Nav.Link href="#features">Destination</Nav.Link>
-                            <Nav.Link href="#features">Profile</Nav.Link>
-                            <Nav.Link>
-                            <Link className={styles.login} to='/login'>Login</Link>
-                            </Nav.Link>
-                            
+                            <Nav.Link ><Link className={styles.login} to='/home'>Home</Link></Nav.Link>
+                            <Nav.Link><Link className={styles.login} to='/book'>Book</Link></Nav.Link>
+                            <Nav.Link><Link className={styles.login} to='/support'>Support</Link></Nav.Link>
+                            <Nav.Link><Link className={styles.login} to='/login'>Login</Link></Nav.Link>
                         </Nav>
                     </Container>
                 </Navbar>
-            </div>
-            <div data-aos="flip-left">
-                <h1>Header</h1>
             </div>
         </div>
     );

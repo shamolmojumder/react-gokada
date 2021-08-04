@@ -1,0 +1,30 @@
+{
+   "vehicles":[ {
+        "id":0,
+        "name":"Train",
+        "cost":6,
+        "url":"https://i.ibb.co/dpgFD3S/Group.png",
+        "person":90
+     },
+     {
+        "id":1,
+        "name":"Bus",
+        "cost":8,
+        "url":"https://i.ibb.co/Z6fXRDm/Frame-1.png",
+        "person":35
+     },
+     {
+        "id":2,
+        "name":"Bike",
+        "cost":12,
+        "url":"https://i.ibb.co/Y8QhL3F/Frame.png",
+        "person":1
+     },
+     {
+        "id":3,
+        "name":"Car",
+        "cost":18,
+        "url":"https://i.ibb.co/pwPZpVd/Frame-2.png",
+        "person":4
+     }]
+}
