@@ -12,7 +12,7 @@ const Vehicle = (props) => {
    }
     return (
         <div>
-            <Card style={{ width: '18rem' }}>
+            <Card data-aos="flip-up" data-aos-offset="300" data-aos-easing="ease-in-sine" style={{ width: '18rem' }}>
                 <Card.Img variant="top" src={url}/>
                 <Card.Body>
                     <Card.Title>{name}</Card.Title>
