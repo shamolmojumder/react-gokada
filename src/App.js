@@ -8,18 +8,24 @@ import {
 } from "react-router-dom";
 import Home from './components/Home/Home';
 import Header from './components/Header/Header';
-import Footer from './components/Footer/Footer';
 import Book from './components/Book/Book';
+import { createContext } from 'react';
+import { useState } from 'react';
+
+export const UserContext = createContext()
 function App() {
+  const [loggedInUser, setLoggedInUser] = useState({})
   return (
-   <Router>
-     <Header></Header>
-       <Switch>
+    <UserContext.Provider value={[loggedInUser, setLoggedInUser]}>
+      <p> email: {loggedInUser.email} </p>
+      <Router>
+        <Header></Header>
+        <Switch>
           <Route exact path="/">
-           <Home></Home>
+            <Home></Home>
           </Route>
           <Route path="/home">
-           <Home></Home>
+            <Home></Home>
           </Route>
           <Route path="/book/:id">
             <Book></Book>
@@ -31,8 +37,8 @@ function App() {
             <NotMatch></NotMatch>
           </Route>
         </Switch>
-        <Footer></Footer>
-   </Router>
+      </Router>
+    </UserContext.Provider>
   );
 }
 

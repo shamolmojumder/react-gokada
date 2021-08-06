@@ -6,9 +6,12 @@ import "firebase/auth";
 import firebaseConfig from './firebase.config';
 import { useState } from 'react';
 import Alert from 'react-bootstrap/Alert'
+import { useContext } from 'react';
+import { UserContext } from '../../App';
 
 const Login = () => {
-    const[signInuUser,setSignInUser] =useState({})
+  const  [loggedInUser, setLoggedInUser] =  useContext(UserContext);
+  const[signInuUser,setSignInUser] =useState({})
     if (firebase.apps.length===0) {
         firebase.initializeApp(firebaseConfig); 
     }
@@ -24,7 +27,8 @@ const Login = () => {
     var token = credential.accessToken;
     // The signed-in user info.
     var user = result.user;
-    setSignInUser(user)
+    setSignInUser(user);
+    setLoggedInUser(user)
     // ...
     console.log(user.displayName,user.email,user.photoURL);
   }).catch((error) => {

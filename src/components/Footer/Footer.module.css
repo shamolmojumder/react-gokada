@@ -1,8 +1,0 @@
-.footermain{
-    display: flex;
-    background-color: rgb(194, 194, 194);
-    justify-content: space-around;
-    color: gray;
-    height: 100px;
-    align-items: flex-end;
-}
