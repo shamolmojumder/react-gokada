@@ -12,7 +12,7 @@ const Profile = () => {
                     <Col md="auto">
                         <h1>Name: {loggedInUser.displayName} </h1>
                         <h1>Email: {loggedInUser.email} </h1>
-                        <Button variant="danger">Logout</Button>
+                        <Button onClick={()=>setLoggedInUser({})} variant="danger">Logout</Button>
                     </Col>
                     
                 </Row>

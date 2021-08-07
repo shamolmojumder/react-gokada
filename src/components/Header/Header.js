@@ -17,11 +17,8 @@ const Header = () => {
                             <Nav.Link ><Link className={styles.login} to='/home'>Home</Link></Nav.Link>
                             <Nav.Link><Link className={styles.login} to='/book'>Book</Link></Nav.Link>
                             <Nav.Link><Link className={styles.login} to='/profile'>Profile</Link></Nav.Link>
-                            {
-                                loggedInUser.email ? <Nav.Link><Link className={styles.login} to='/login'>Logout</Link></Nav.Link>:<Nav.Link><Link className={styles.login} to='/login'>Login</Link></Nav.Link>
-                            }
                            {
-                               loggedInUser.email && <Nav.Link><img className={styles.photoURL} src={loggedInUser.photoURL} alt="missing" /> </Nav.Link>
+                               loggedInUser.email && <Nav.Link> <Link to='/profile'> <img className={styles.photoURL} src={loggedInUser.photoURL} alt="missing" /> </Link>  </Nav.Link>
                            }
                         </Nav>
                     </Container>
