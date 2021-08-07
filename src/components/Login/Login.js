@@ -8,9 +8,15 @@ import { useState } from 'react';
 import Alert from 'react-bootstrap/Alert'
 import { useContext } from 'react';
 import { UserContext } from '../../App';
+import { useHistory, useLocation } from 'react-router-dom';
 
 const Login = () => {
   const  [loggedInUser, setLoggedInUser] =  useContext(UserContext);
+  let history = useHistory();
+  let location = useLocation();
+  
+  let { from } = location.state || { from: { pathname: "/" } };
+  
   const[signInuUser,setSignInUser] =useState({})
     if (firebase.apps.length===0) {
         firebase.initializeApp(firebaseConfig); 
@@ -29,6 +35,7 @@ const Login = () => {
     var user = result.user;
     setSignInUser(user);
     setLoggedInUser(user)
+    history.replace(from);
     // ...
     console.log(user.displayName,user.email,user.photoURL);
   }).catch((error) => {
