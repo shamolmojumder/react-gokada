@@ -12,6 +12,7 @@ const Profile = () => {
                     <Col md="auto">
                         <h1>Name: {loggedInUser.displayName} </h1>
                         <h1>Email: {loggedInUser.email} </h1>
+                        <img style={{height:'50px',width:'50px'}} src={loggedInUser.PhotoURL} alt="missing" />
                         <Button onClick={()=>setLoggedInUser({})} variant="danger">Logout</Button>
                     </Col>
                     

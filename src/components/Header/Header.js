@@ -15,7 +15,7 @@ const Header = () => {
                         <Navbar.Brand><Link className={styles.login} to='/'>Gokada</Link></Navbar.Brand>
                         <Nav className="ms-auto">
                             <Nav.Link ><Link className={styles.login} to='/home'>Home</Link></Nav.Link>
-                            <Nav.Link><Link className={styles.login} to='/book'>Book</Link></Nav.Link>
+                            <Nav.Link><Link className={styles.login} to='/support'>Support</Link></Nav.Link>
                             <Nav.Link><Link className={styles.login} to='/profile'>Profile</Link></Nav.Link>
                            {
                                loggedInUser.email && <Nav.Link> <Link to='/profile'> <img className={styles.photoURL} src={loggedInUser.photoURL} alt="missing" /> </Link>  </Nav.Link>

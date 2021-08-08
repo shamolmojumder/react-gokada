@@ -48,7 +48,7 @@ const Login = () => {
     var credential = error.credential;
     // ...
     console.log(errorMessage);
-    setSignInUser(errorMessage)
+    setSignInUser(errorMessage);
   });
     }
     return (
@@ -69,13 +69,14 @@ const Login = () => {
             <h1>Name:{signInuUser.email} </h1>
             <img src={signInuUser.photoURL} alt="" />
          {
-             signInuUser.email &&   <Alert data-aos="fade-left"
+            signInuUser.email &&   <Alert data-aos="fade-left"
              data-aos-anchor="#example-anchor"
              data-aos-offset="500"
              data-aos-duration="500" variant='success '>
              account loggedin successfully
            </Alert>
          }
+     
      
             
         </div>
