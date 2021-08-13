@@ -9,13 +9,15 @@ import Alert from 'react-bootstrap/Alert'
 import { useContext } from 'react';
 import { UserContext } from '../../App';
 import { useHistory, useLocation } from 'react-router-dom';
+import style from './Login.module.css'
 
 const Login = () => {
   const  [loggedInUser, setLoggedInUser] =  useContext(UserContext);
   const [avatar,setAvtar]=useState({
     name:'',
     email:'',
-    password:''
+    password:'',
+    success:false
   })
   let history = useHistory();
   let location = useLocation();
@@ -66,6 +68,7 @@ const Login = () => {
       }if (isFieldValid) {
         const newUserInfo={...avatar};
         newUserInfo[e.target.name]=e.target.value;
+        newUserInfo.success=true;
         setAvtar(newUserInfo);
         setLoggedInUser(newUserInfo);
       }
@@ -80,7 +83,7 @@ const Login = () => {
         console.log(user);
         // const newUserInfo={...avatar};
         // new
-        
+        setAvtar(user)
         // ...
         })
         .catch((error) => {
@@ -103,22 +106,23 @@ const Login = () => {
                     <Form.Label>Password</Form.Label>
                     <Form.Control onBlur={handleBlur} name="password" type="password" placeholder="Password" />
                 </Form.Group>
-                <input type="submit" value="submit" />
+                <input className={style.submitInput} type="submit" value="Sign Up" />
                 <br />
-                <br />
-                <Button data-aos="fade-left" onClick={googleSignInBtn} variant="danger">Signin with Google</Button>
             </Form> 
+            <Button data-aos="fade-left" onClick={googleSignInBtn} variant="danger">Signin with Google</Button>
+  
             <h1>Name:{signInuUser.displayName} </h1>
             <h1>Name:{signInuUser.email} </h1>
             <img src={signInuUser.photoURL} alt="" />
-         {
-            signInuUser.email &&   <Alert data-aos="fade-left"
-             data-aos-anchor="#example-anchor"
-             data-aos-offset="500"
-             data-aos-duration="500" variant='success '>
-             account loggedin successfully
-           </Alert>
-         }
+            {
+                signInuUser.email &&   
+                <Alert data-aos="fade-left"
+                data-aos-anchor="#example-anchor"
+                data-aos-offset="500"
+                data-aos-duration="500" variant='success '>
+                account loggedin successfully
+              </Alert>
+            }
      
      
             
