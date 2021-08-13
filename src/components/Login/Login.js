@@ -10,6 +10,7 @@ import { useContext } from 'react';
 import { UserContext } from '../../App';
 import { useHistory, useLocation } from 'react-router-dom';
 import style from './Login.module.css'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
 const Login = () => {
   const  [loggedInUser, setLoggedInUser] =  useContext(UserContext);
@@ -97,6 +98,7 @@ const Login = () => {
     }
     return (
         <div>
+        
            <Form onSubmit={handleSubmit}>
                 <Form.Group className="mb-3" controlId="formGroupEmail">
                     <Form.Label>Email address</Form.Label>
@@ -123,7 +125,7 @@ const Login = () => {
                 account loggedin successfully
               </Alert>
             }
-     
+   
      
             
         </div>
