@@ -6,7 +6,7 @@ import { Link } from 'react-router-dom';
 import { UserContext } from '../../App';
 import styles from './Header.module.css'
 const Header = () => {
-    const [loggedInUser,setLoggedInUser]=useContext(UserContext);
+    const [loggedInUser]=useContext(UserContext);
     return (
         <div>
             <div data-aos="zoom-in" data-aos-delay="1050" data-aos-duration="4000" data-aos-offset="200">
