@@ -19,7 +19,8 @@ const Login = () => {
     email:'',
     password:'',
     success:false
-  })
+  });
+  const [newUser,setNewUser]=useState(false)
   let history = useHistory();
   let location = useLocation();
   
@@ -77,40 +78,62 @@ const Login = () => {
 
     }
     const handleSubmit =(e)=>{
-      firebase.auth().createUserWithEmailAndPassword(avatar.email, avatar.password)
-      .then((userCredential) => {
-        // Signed in 
-        var user = userCredential.user;
-        console.log(user);
-        // const newUserInfo={...avatar};
-        // new
-        setAvtar(user)
-        // ...
+      if (newUser && avatar.email && avatar.password) {
+        firebase.auth().createUserWithEmailAndPassword(avatar.email, avatar.password)
+        .then((userCredential) => {
+          // Signed in 
+          var user = userCredential.user;
+          console.log(user);
+          // const newUserInfo={...avatar};
+          // new
+          setAvtar(user)
+          // ...
+          })
+          .catch((error) => {
+            var errorCode = error.code;
+            var errorMessage = error.message;
+            // ..
+          });
+        console.log("handlesubmited");
+        console.log(loggedInUser);
+      }
+      if (!newUser && avatar.email && avatar.password) {
+        firebase.auth().signInWithEmailAndPassword(avatar.email, avatar.password)
+        .then((userCredential) => {
+          // Signed in
+          var user = userCredential.user;
+          // ...
+          setSignInUser(user)
+          setLoggedInUser(user)
         })
         .catch((error) => {
           var errorCode = error.code;
           var errorMessage = error.message;
-          // ..
         });
-      console.log("handlesubmited");
-      console.log(loggedInUser);
+      }
       e.preventDefault()
     }
     return (
         <div>
-        
+         <input onClick={()=>setNewUser(!newUser)} type="checkbox" name="newUser" id="" />
+            <label htmlFor="newUser">New User</label>
+            <br />
            <Form onSubmit={handleSubmit}>
                 <Form.Group className="mb-3" controlId="formGroupEmail">
                     <Form.Label>Email address</Form.Label>
-                    <Form.Control onBlur={handleBlur} name="email" type="email" placeholder="Enter email" />
+                    <Form.Control onBlur={handleBlur} name="email" type="email" placeholder="Enter email" required />
                 </Form.Group>
                 <Form.Group className="mb-3" controlId="formGroupPassword">
                     <Form.Label>Password</Form.Label>
-                    <Form.Control onBlur={handleBlur} name="password" type="password" placeholder="Password" />
+                    <Form.Control onBlur={handleBlur} name="password" type="password" placeholder="Password" required/>
                 </Form.Group>
-                <input className={style.submitInput} type="submit" value="Sign Up" />
+               {
+                 newUser ? <input className={style.submitInput} type="submit" value="Sign Up" />:<input className={style.submitInput} type="submit" value="Sign in" />
+               }
                 <br />
             </Form> 
+
+           
             <Button data-aos="fade-left" onClick={googleSignInBtn} variant="danger">Signin with Google</Button>
   
             <h1>Name:{signInuUser.displayName} </h1>
@@ -125,8 +148,6 @@ const Login = () => {
                 account loggedin successfully
               </Alert>
             }
-   
-     
             
         </div>
     );
